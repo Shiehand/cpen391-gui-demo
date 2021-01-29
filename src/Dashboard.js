@@ -1,25 +1,22 @@
 import React from 'react'
 
-import { AppBar, Badge, Container, Grid, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
-import BellIcon from '@material-ui/icons/Notifications'
-import ProfileIcon from '@material-ui/icons/AccountCircle'
+import { Grid, makeStyles, Paper } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import Navbar from './Navbar'
 
 const useStyles = makeStyles((theme) => ({
-    title: {
-        flexGrow: 1,
-    },
-    bell: {
-        marginRight: theme.spacing(2),
-    },
-    profile: {
-        marginRight: theme.spacing(2),
-    },
     root: {
         flexGrow: 1,
     },
-    body: {
-        
+    paper: {
+        margin: theme.spacing(5),
+        padding: theme.spacing(3),
+        backgroundColor: "#cccccc",
+        textAlign: 'center',
+    },
+    chart: {
+        margin: theme.spacing(2),
+        height: '250px',
     },
 }))
 
@@ -27,21 +24,42 @@ export default function Dashboard() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <AppBar position='static'>
-                <Toolbar>
-                    <IconButton color='inherit'><MenuIcon /></IconButton>
-                    <Typography className={classes.title} variant='h6'>Dashboard</Typography>
-                    <IconButton className={classes.bell} color='inherit'>
-                        <Badge badgeContent={1} color='secondary'>
-                            <BellIcon />
-                        </Badge>
-                    </IconButton>
-                    <IconButton className={classes.profile} color='inherit'><ProfileIcon /></IconButton>
-                </Toolbar>
-            </AppBar>
-
+            <Navbar />
             <Grid container spacing={3}>
-
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Link to='/animal'>Elephant</Link>
+                        <Grid container spacing={1}>
+                            <Grid item xs={6}>
+                                <Paper className={classes.chart}>
+                                    Chart 
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Paper className={classes.chart}>
+                                    Other data
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper className={classes.paper}>
+                        <Link to='/animal'>Tiger</Link>
+                        <Grid container spacing={1}>
+                            <Grid item xs={6}>
+                                <Paper className={classes.chart}>
+                                    Chart 
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Paper className={classes.chart}>
+                                    Other data
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                </Grid>
             </Grid>
         </div>
    )
